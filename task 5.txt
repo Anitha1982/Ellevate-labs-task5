@@ -1,0 +1,43 @@
+CREATE TABLE Customers1 (
+    CustomerID INT PRIMARY KEY,
+	Name VARCHAR(100),
+	Email VARCHAR(100),
+	Phone VARCHAR(15)
+);
+
+CREATE TABLE Orders(
+     OrderID INT PRIMARY KEY,
+	 OrderDate DATE,
+	 Amount Decimal(10,2),
+	 CustomerID INT,
+	 FOREIGN KEY (CustomerID) REFERENCES Customers1(CustomeriD)
+	);
+
+INSERT INTO Customers1(CustomerID,Name,Email,Phone)
+VALUES
+      (1,'Alice','Alice@xxx.com',90897867),
+	  (2,'Bob','Bob@fff.com',233434545),
+	  (3,'Charles','Charles@uuu.com',90875645)
+
+
+INSERT INTO Orders(OrderID,OrderDate,Amount,CustomerID)
+VALUES
+      (101, '2025-06-27', 230.90, 1),
+	  (102, '2025-06-23', 340.80, 3),
+	  (103, '2025-06-26',120.90,1)
+	 
+SELECT Customers1.Name,Orders.OrderID
+FROM Customers1
+INNER JOIN Orders On Customers1.CustomerID = Orders.CustomerID;
+
+SELECT Customers1.Name,Orders.OrderID
+FROM Customers1
+LEFT JOIN Orders On Customers1.CustomerID = Orders.CustomerID;
+
+SELECT Customers1.Name,Orders.OrderID
+FROM Customers1
+RIGHT JOIN Orders On Customers1.CustomerID = Orders.CustomerID;
+
+SELECT Customers1.Name,Orders.OrderID
+FROM Customers1
+FULL JOIN Orders On Customers1.CustomerID = Orders.CustomerID;
